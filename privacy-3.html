@@ -1,0 +1,126 @@
+<title>Netty — Privacy Policy</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+  :root {
+    --bg: #ffffff; --bg2: #f6f7f9; --fg: #0f1117; --fg2: #4a5060;
+    --accent: #2563eb; --accent2: #1d4ed8; --border: #e2e5ec;
+    --green: #16a34a; --green-bg: #f0fdf4;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e1017; --bg2: #161b26; --fg: #e8ecf3; --fg2: #8b93a7;
+      --accent: #3b82f6; --accent2: #60a5fa; --border: #242b3a;
+      --green: #22c55e; --green-bg: #052e16;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e1017; --bg2: #161b26; --fg: #e8ecf3; --fg2: #8b93a7;
+    --accent: #3b82f6; --accent2: #60a5fa; --border: #242b3a;
+    --green: #22c55e; --green-bg: #052e16;
+    color-scheme: dark;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg); color: var(--fg);
+    line-height: 1.7; padding-inline: 24px; padding-block: 40px;
+  }
+  .wrap { max-width: 680px; margin-inline: auto; }
+
+  .top { text-align: center; padding-block: 48px 40px; }
+  .top img { width: 72px; margin-bottom: 20px; }
+  .top h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.025em; }
+  .top .date { margin-top: 8px; font-size: 0.875rem; color: var(--fg2); }
+
+  .badge {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: var(--green-bg); border: 1px solid var(--green);
+    border-radius: 12px; padding: 18px 20px; margin-block: 32px;
+  }
+  .badge-icon { font-size: 1.4rem; flex-shrink: 0; }
+  .badge strong { color: var(--green); font-size: 1rem; }
+  .badge p { font-size: 0.875rem; color: var(--fg2); margin-top: 4px; }
+
+  h2 { font-size: 1.1rem; font-weight: 700; margin-top: 36px; margin-bottom: 12px; }
+  p { font-size: 0.925rem; color: var(--fg2); }
+  p + p { margin-top: 10px; }
+
+  ul { list-style: none; margin-top: 12px; display: flex; flex-direction: column; gap: 8px; }
+  ul li { display: flex; gap: 10px; align-items: flex-start; font-size: 0.9rem; }
+  .dot { flex-shrink: 0; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); margin-top: 8px; }
+
+  .code-line {
+    display: inline-block; background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 6px; padding: 2px 8px; font-family: ui-monospace, monospace;
+    font-size: 0.85rem; color: var(--fg);
+  }
+
+  hr { border: none; border-top: 1px solid var(--border); margin-block: 36px; }
+
+  footer { margin-top: 48px; font-size: 0.85rem; color: var(--fg2); text-align: center; }
+  footer a { color: var(--accent2); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+  .footer-links { display: flex; gap: 16px; justify-content: center; margin-bottom: 8px; }
+</style>
+
+<div class="wrap">
+  <div class="top">
+    <img src="logo.png" alt="Netty">
+    <h1>Privacy Policy</h1>
+    <div class="date">Last updated: October 13, 2026</div>
+  </div>
+
+  <div class="badge">
+    <div class="badge-icon">🔒</div>
+    <div>
+      <strong>We collect no data whatsoever.</strong>
+      <p>Netty does not collect, transmit, store, or share any personal information, usage statistics, analytics, crash reports, or any other data.</p>
+    </div>
+  </div>
+
+  <h2>Overview</h2>
+  <p>Netty is a VPN client for Windows developed by Hash and Joy, LLC. We are committed to your privacy.</p>
+
+  <h2>What Stays on Your Device</h2>
+  <p>All of the following is stored exclusively on your device and never leaves it:</p>
+  <ul>
+    <li><div class="dot"></div><span>VPN server configurations and connection links you add</span></li>
+    <li><div class="dot"></div><span>Routing rules (IP/CIDR lists and domain lists)</span></li>
+    <li><div class="dot"></div><span>App settings and preferences</span></li>
+  </ul>
+
+  <h2>VPN Servers</h2>
+  <p>Netty is a client tool only. We do not provide, operate, or have any access to VPN servers. You connect to servers that you configure yourself. We have no knowledge of which servers you use or what traffic passes through them.</p>
+
+  <h2>Network Access</h2>
+  <p>Netty makes network connections solely to:</p>
+  <ul>
+    <li><div class="dot"></div><span>The VPN server you have configured and chosen to connect to</span></li>
+    <li><div class="dot"></div><span><span class="code-line">connectivitycheck.gstatic.com</span> — to verify that your connection is working after connecting</span></li>
+  </ul>
+  <p style="margin-top:12px">No other outbound connections are made by the app.</p>
+
+  <h2>Third-Party Components</h2>
+  <p>Netty uses <a href="https://github.com/SagerNet/sing-box" target="_blank" style="color:var(--accent2)">sing-box</a> as its core tunneling engine. sing-box is open source software. Its own privacy practices apply to its operation.</p>
+
+  <h2>Children</h2>
+  <p>Netty does not knowingly collect any information from anyone, including children.</p>
+
+  <h2>Changes</h2>
+  <p>If this policy changes, the updated version will be posted here with a new date.</p>
+
+  <hr>
+
+  <h2>Contact</h2>
+  <p>Hash and Joy, LLC<br>Yerevan, Armenia<br><a href="https://hashandjoy.com" style="color:var(--accent2)">hashandjoy.com</a></p>
+
+  <footer>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="support.html">Support</a>
+    </div>
+    <div>© 2024 Hash and Joy, LLC</div>
+  </footer>
+</div>

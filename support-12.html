@@ -1,0 +1,184 @@
+<title>Netty — Support</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+  :root {
+    --bg: #ffffff; --bg2: #f6f7f9; --fg: #0f1117; --fg2: #4a5060;
+    --accent: #2563eb; --accent2: #1d4ed8; --border: #e2e5ec;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e1017; --bg2: #161b26; --fg: #e8ecf3; --fg2: #8b93a7;
+      --accent: #3b82f6; --accent2: #60a5fa; --border: #242b3a;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e1017; --bg2: #161b26; --fg: #e8ecf3; --fg2: #8b93a7;
+    --accent: #3b82f6; --accent2: #60a5fa; --border: #242b3a;
+    color-scheme: dark;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg); color: var(--fg);
+    line-height: 1.7; padding-inline: 24px; padding-block: 40px;
+  }
+  .wrap { max-width: 680px; margin-inline: auto; }
+
+  .top { text-align: center; padding-block: 48px 40px; }
+  .top img { width: 72px; margin-bottom: 20px; }
+  .top h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.025em; }
+
+  .contact-card {
+    display: flex; gap: 14px; align-items: center;
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 12px; padding: 20px 24px; margin-block: 32px;
+  }
+  .contact-card .icon { font-size: 1.6rem; flex-shrink: 0; }
+  .contact-card p { font-size: 0.875rem; color: var(--fg2); }
+  .contact-card a { color: var(--accent2); font-weight: 600; text-decoration: none; font-size: 1rem; }
+  .contact-card a:hover { text-decoration: underline; }
+
+  h2 { font-size: 1.2rem; font-weight: 700; margin-top: 40px; margin-bottom: 20px; }
+
+  .faq { display: flex; flex-direction: column; gap: 2px; }
+  .faq-item {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 10px; overflow: hidden;
+  }
+  .faq-item + .faq-item { margin-top: 4px; }
+  details > summary {
+    list-style: none; padding: 16px 20px;
+    font-weight: 600; font-size: 0.925rem;
+    cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+    gap: 12px;
+  }
+  details > summary::after { content: '+'; font-size: 1.2rem; color: var(--fg2); flex-shrink: 0; }
+  details[open] > summary::after { content: '−'; }
+  details > summary::-webkit-details-marker { display: none; }
+  .faq-body {
+    padding: 0 20px 16px;
+    font-size: 0.9rem; color: var(--fg2); line-height: 1.65;
+  }
+  .faq-body ul { list-style: none; margin-top: 8px; display: flex; flex-direction: column; gap: 6px; }
+  .faq-body li { display: flex; gap: 8px; }
+  .faq-body li::before { content: '–'; flex-shrink: 0; }
+  code {
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 4px; padding: 1px 6px;
+    font-family: ui-monospace, monospace; font-size: 0.85em;
+  }
+
+  hr { border: none; border-top: 1px solid var(--border); margin-block: 40px; }
+  footer { margin-top: 48px; font-size: 0.85rem; color: var(--fg2); text-align: center; }
+  footer a { color: var(--accent2); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+  .footer-links { display: flex; gap: 16px; justify-content: center; margin-bottom: 8px; }
+</style>
+
+<div class="wrap">
+  <div class="top">
+    <img src="logo.png" alt="Netty">
+    <h1>Support</h1>
+  </div>
+
+  <div class="contact-card">
+    <div class="icon">✉️</div>
+    <div>
+      <a href="mailto:support@hashandjoy.com">support@hashandjoy.com</a>
+      <p>For questions or issues, email us and we'll get back to you.</p>
+    </div>
+  </div>
+
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq">
+
+    <div class="faq-item">
+      <details>
+        <summary>Netty won't start / shows an error about sing-box</summary>
+        <div class="faq-body">
+          Make sure you installed Netty using the official installer. If the problem persists, try reinstalling.
+        </div>
+      </details>
+    </div>
+
+    <div class="faq-item">
+      <details>
+        <summary>The app shows "VPN started but internet is unavailable"</summary>
+        <div class="faq-body">
+          This means your VPN server is unreachable or misconfigured. Check your server link and try again.
+        </div>
+      </details>
+    </div>
+
+    <div class="faq-item">
+      <details>
+        <summary>How do I add a server?</summary>
+        <div class="faq-body">
+          Click the <strong>+</strong> button and choose one of three methods — paste from clipboard, enter manually, or scan a QR code.
+        </div>
+      </details>
+    </div>
+
+    <div class="faq-item">
+      <details>
+        <summary>What protocols are supported?</summary>
+        <div class="faq-body">
+          VLESS, VLESS Reality, VMess, Trojan, and Shadowsocks.
+        </div>
+      </details>
+    </div>
+
+    <div class="faq-item">
+      <details>
+        <summary>What is Traffic Routing?</summary>
+        <div class="faq-body">
+          Routing lets you control which traffic goes through the VPN and which goes directly. You can:
+          <ul>
+            <li>Upload a <code>.txt</code> file with IP/CIDR ranges to exclude or route through VPN</li>
+            <li>Add domains (one per line) and set them to go Direct, Via VPN, or Block</li>
+          </ul>
+          <p style="margin-top:8px">When routing is active, the routing button glows orange and an orange icon appears on the main green indicator.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="faq-item">
+      <details>
+        <summary>Where is my data stored?</summary>
+        <div class="faq-body">
+          All data (servers, routing rules, settings) is stored locally on your device at <code>%AppData%\Netty\</code>. Nothing is sent to our servers.
+        </div>
+      </details>
+    </div>
+
+    <div class="faq-item">
+      <details>
+        <summary>How do I change the app language?</summary>
+        <div class="faq-body">
+          The language is selected during installation. To change it, reinstall and choose a different language.
+        </div>
+      </details>
+    </div>
+
+    <div class="faq-item">
+      <details>
+        <summary>How do I uninstall?</summary>
+        <div class="faq-body">
+          Use <strong>Windows Settings → Apps</strong>, find Netty and uninstall. You will be asked whether to delete your saved servers and settings.
+        </div>
+      </details>
+    </div>
+
+  </div>
+
+  <hr>
+
+  <footer>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="privacy.html">Privacy</a>
+    </div>
+  </footer>
+</div>

@@ -1,0 +1,374 @@
+<title>Netty — Windows VPN Client</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+  :root {
+    --bg: #ffffff;
+    --bg2: #f6f7f9;
+    --fg: #0f1117;
+    --fg2: #4a5060;
+    --accent: #2563eb;
+    --accent2: #1d4ed8;
+    --border: #e2e5ec;
+    --tag-bg: #eff6ff;
+    --tag-fg: #2563eb;
+    --green: #16a34a;
+    --orange: #ea580c;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e1017;
+      --bg2: #161b26;
+      --fg: #e8ecf3;
+      --fg2: #8b93a7;
+      --accent: #3b82f6;
+      --accent2: #60a5fa;
+      --border: #242b3a;
+      --tag-bg: #1e2d4a;
+      --tag-fg: #60a5fa;
+      --green: #22c55e;
+      --orange: #fb923c;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e1017;
+    --bg2: #161b26;
+    --fg: #e8ecf3;
+    --fg2: #8b93a7;
+    --accent: #3b82f6;
+    --accent2: #60a5fa;
+    --border: #242b3a;
+    --tag-bg: #1e2d4a;
+    --tag-fg: #60a5fa;
+    --green: #22c55e;
+    --orange: #fb923c;
+    color-scheme: dark;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    line-height: 1.6;
+    padding-inline: 24px;
+    padding-block: 40px;
+  }
+  .wrap { max-width: 780px; margin-inline: auto; }
+
+  /* Hero */
+  .hero {
+    text-align: center;
+    padding-block: 60px 48px;
+  }
+  .hero img { width: 96px; height: 96px; margin-bottom: 24px; }
+  .hero h1 { font-size: 2.6rem; font-weight: 700; letter-spacing: -0.03em; }
+  .hero p {
+    margin-top: 12px;
+    font-size: 1.1rem;
+    color: var(--fg2);
+    max-width: 480px;
+    margin-inline: auto;
+  }
+  .hero-btns {
+    margin-top: 28px;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 22px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .btn:hover { opacity: .85; }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-outline {
+    background: transparent;
+    color: var(--accent2);
+    border: 1.5px solid var(--accent);
+  }
+
+  /* Features */
+  .section { margin-top: 64px; }
+  .section-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+  }
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .feature {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .feature-icon {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  .feature h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; }
+  .feature p { font-size: 0.875rem; color: var(--fg2); line-height: 1.5; }
+
+  /* Protocols */
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .tag {
+    background: var(--tag-bg);
+    color: var(--tag-fg);
+    border-radius: 6px;
+    padding: 4px 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Steps */
+  .steps { display: flex; flex-direction: column; gap: 16px; }
+  .step {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .step-num {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .step-body { padding-top: 4px; }
+  .step-body strong { font-weight: 600; }
+  .step-body p { font-size: 0.9rem; color: var(--fg2); margin-top: 2px; }
+
+  /* Routing */
+  .routing-box {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-top: 16px;
+  }
+  .routing-box ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 12px;
+  }
+  .routing-box li {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 0.9rem;
+  }
+  .dot {
+    flex-shrink: 0;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-top: 7px;
+  }
+  .dot.orange { background: var(--orange); }
+
+  /* Divider */
+  hr { border: none; border-top: 1px solid var(--border); margin-block: 48px; }
+
+  /* Req table */
+  .req {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .req-row {
+    display: flex;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    gap: 16px;
+    font-size: 0.9rem;
+  }
+  .req-row:last-child { border-bottom: none; }
+  .req-key { width: 140px; flex-shrink: 0; font-weight: 600; color: var(--fg2); }
+
+  /* Footer */
+  footer {
+    margin-top: 64px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--fg2);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  footer a { color: var(--accent2); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+</style>
+
+<div class="wrap">
+  <section class="hero">
+    <img src="logo.png" alt="Netty logo">
+    <h1>Netty</h1>
+    <p>A lightweight VPN client for Windows supporting modern proxy protocols.</p>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">Features</h2>
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon">🔌</div>
+        <h3>Multiple Protocols</h3>
+        <p>VLESS, VLESS Reality, VMess, Trojan, and Shadowsocks.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">➕</div>
+        <h3>Easy Server Setup</h3>
+        <p>Add servers via clipboard, manual entry, or QR code scan.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🔀</div>
+        <h3>Traffic Routing</h3>
+        <p>Route or exclude traffic by IP/CIDR ranges and domain rules.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🔒</div>
+        <h3>No Data Collection</h3>
+        <p>Everything stays on your device. Nothing is sent anywhere.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🌐</div>
+        <h3>Multilingual</h3>
+        <p>Available in English, Russian, and Chinese (Simplified).</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📌</div>
+        <h3>System Tray</h3>
+        <p>Minimize to tray and run in background.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">Protocols</h2>
+    <div class="tags">
+      <span class="tag">VLESS</span>
+      <span class="tag">VLESS Reality</span>
+      <span class="tag">VMess</span>
+      <span class="tag">Trojan</span>
+      <span class="tag">Shadowsocks</span>
+    </div>
+  </section>
+
+  <hr>
+
+  <section class="section">
+    <h2 class="section-title">Installation</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <strong>Download the installer</strong>
+          <p>Get the latest <code>Netty-Setup-x.x.x.exe</code> from the <a href="https://github.com/ticketsnotificationstoyou/netty-windows/releases" style="color:var(--accent2)">Releases</a> page.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <strong>Run the setup</strong>
+          <p>Launch the installer and choose your language.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <strong>Follow the wizard</strong>
+          <p>Complete the setup and launch Netty.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">Adding a Server</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num" style="background:var(--fg2)">📋</div>
+        <div class="step-body">
+          <strong>From Clipboard</strong>
+          <p>Copies a VPN link automatically from your clipboard.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num" style="background:var(--fg2)">✏️</div>
+        <div class="step-body">
+          <strong>Manual</strong>
+          <p>Paste or type a link: <code>vless://</code>, <code>vmess://</code>, <code>trojan://</code>, <code>ss://</code></p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num" style="background:var(--fg2)">📷</div>
+        <div class="step-body">
+          <strong>QR Code</strong>
+          <p>Scan a QR code image from a file on your computer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">Traffic Routing</h2>
+    <div class="routing-box">
+      <p style="font-size:.9rem;color:var(--fg2)">Click the routing button (grid icon) to open routing settings:</p>
+      <ul>
+        <li><div class="dot"></div><span><strong>IP Exclusions</strong> — load a <code>.txt</code> file with IP/CIDR addresses (one per line)</span></li>
+        <li><div class="dot"></div><span><strong>Domains</strong> — enter domains one per line (e.g. <code>.ru</code>, <code>example.com</code>)</span></li>
+        <li><div class="dot"></div><span><strong>Action</strong> — choose: Direct / Via VPN / Block</span></li>
+        <li><div class="dot orange"></div><span>When routing is active, the button glows <strong style="color:var(--orange)">orange</strong> and an orange badge appears on the main indicator.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <hr>
+
+  <section class="section">
+    <h2 class="section-title">Requirements</h2>
+    <div class="req">
+      <div class="req-row">
+        <span class="req-key">OS</span>
+        <span>Windows 10 / 11 (x64)</span>
+      </div>
+      <div class="req-row">
+        <span class="req-key">Permissions</span>
+        <span>Administrator rights (required for TUN mode)</span>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <footer>
+    <div>
+      <a href="privacy.html">Privacy Policy</a> · <a href="support.html">Support</a>
+    </div>
+    <div>© 2024 <a href="https://hashandjoy.com">Hash and Joy, LLC</a> — Yerevan, Armenia</div>
+  </footer>
+</div>
